@@ -29,6 +29,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         locationManager.startUpdatingLocation()
         
+        var longPress = UILongPressGestureRecognizer (target: self, action: "action:")
+        
+        longPress.minimumPressDuration = 2.0
+        
+        gameMapView.addGestureRecognizer(longPress)
         
         
     }
@@ -39,9 +44,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        
-        
-        
+    
         var userLocation = locations[0] as CLLocation
         
         var latitude = userLocation.coordinate.latitude
@@ -54,9 +57,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         gameMapView.setRegion(region, animated: true)
         
+       
+
+        
 println("locations = \(locations)")
         
     }
+    
+    func action(gestureRecognizer: UIGestureRecognizer) {
+        
+        var touchPoint = gestureRecognizer.locationInView(self.gameMapView)
+        
+        var newCoordinate:CLLocationCoordinate2D = gameMapView.convertPoint(touchPoint, toCoordinateFromView: self.gameMapView)
+        
+        //adds annotations to the map chosen by user pressing on the map
+        var annotation = MKPointAnnotation()
+        
+        annotation.coordinate = newCoordinate
+        
+        annotation.title = ""
+        annotation.subtitle = ""
+        
+        gameMapView.addAnnotation(annotation)
+     
+        
+        
+    }
+
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         

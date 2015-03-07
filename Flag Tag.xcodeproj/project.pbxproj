@@ -17,6 +17,9 @@
 		29066C191AAA8EB100432AC6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29066C181AAA8EB100432AC6 /* CoreLocation.framework */; };
 		29066C1B1AAA8EB600432AC6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29066C1A1AAA8EB600432AC6 /* MapKit.framework */; };
 		29066C1D1AAA8EF000432AC6 /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29066C1C1AAA8EF000432AC6 /* PointsViewController.swift */; };
+		2941278B1AAB46E7008DAAFF /* GameSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941278A1AAB46E7008DAAFF /* GameSingleton.swift */; };
+		2941278D1AAB4C61008DAAFF /* UserSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941278C1AAB4C61008DAAFF /* UserSingleton.swift */; };
+		2941278F1AAB4DB2008DAAFF /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941278E1AAB4DB2008DAAFF /* Flag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		29066C181AAA8EB100432AC6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		29066C1A1AAA8EB600432AC6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		29066C1C1AAA8EF000432AC6 /* PointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsViewController.swift; sourceTree = "<group>"; };
+		2941278A1AAB46E7008DAAFF /* GameSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSingleton.swift; sourceTree = "<group>"; };
+		2941278C1AAB4C61008DAAFF /* UserSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSingleton.swift; sourceTree = "<group>"; };
+		2941278E1AAB4DB2008DAAFF /* Flag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,14 +95,16 @@
 		29066BF31AAA8D5F00432AC6 /* Flag Tag */ = {
 			isa = PBXGroup;
 			children = (
+				294127901AAB4DC3008DAAFF /* Singletons */,
 				29066BF61AAA8D5F00432AC6 /* AppDelegate.swift */,
 				29066BF81AAA8D5F00432AC6 /* LoginViewController.swift */,
 				29066C161AAA8E9A00432AC6 /* MapViewController.swift */,
+				29066C1C1AAA8EF000432AC6 /* PointsViewController.swift */,
+				2941278E1AAB4DB2008DAAFF /* Flag.swift */,
 				29066BFA1AAA8D5F00432AC6 /* Main.storyboard */,
 				29066BFD1AAA8D5F00432AC6 /* Images.xcassets */,
 				29066BFF1AAA8D5F00432AC6 /* LaunchScreen.xib */,
 				29066BF41AAA8D5F00432AC6 /* Supporting Files */,
-				29066C1C1AAA8EF000432AC6 /* PointsViewController.swift */,
 			);
 			path = "Flag Tag";
 			sourceTree = "<group>";
@@ -124,6 +132,15 @@
 				29066C0B1AAA8D6000432AC6 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		294127901AAB4DC3008DAAFF /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				2941278A1AAB46E7008DAAFF /* GameSingleton.swift */,
+				2941278C1AAB4C61008DAAFF /* UserSingleton.swift */,
+			);
+			name = Singletons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,8 +244,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				29066BF91AAA8D5F00432AC6 /* LoginViewController.swift in Sources */,
+				2941278F1AAB4DB2008DAAFF /* Flag.swift in Sources */,
 				29066C1D1AAA8EF000432AC6 /* PointsViewController.swift in Sources */,
+				2941278D1AAB4C61008DAAFF /* UserSingleton.swift in Sources */,
 				29066C171AAA8E9A00432AC6 /* MapViewController.swift in Sources */,
+				2941278B1AAB46E7008DAAFF /* GameSingleton.swift in Sources */,
 				29066BF71AAA8D5F00432AC6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +441,7 @@
 				29066C121AAA8D6000432AC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29066C131AAA8D6000432AC6 /* Build configuration list for PBXNativeTarget "Flag TagTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +450,7 @@
 				29066C151AAA8D6000432AC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
