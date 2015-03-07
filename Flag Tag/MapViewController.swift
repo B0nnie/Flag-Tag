@@ -11,57 +11,107 @@ import MapKit
 import CoreLocation
 
 
-
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var gameMapView: MKMapView!
     
     var locationManager = CLLocationManager()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Location Manager settings
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        
         locationManager.startUpdatingLocation()
         
-        var longPress = UILongPressGestureRecognizer (target: self, action: "action:")
         
+        GameSingleton.gameData().gameIsActive = true
+        UserSingleton.userData().flagDropped = false
+        
+        /*
+        // Check if game is active
+        if GameSingleton.gameData().gameIsActive == true {
+        
+        // Long press gesture recognizer settings
+        if UserSingleton.userData().userFlag == 0 {
+        
+        var longPress = UILongPressGestureRecognizer(target: self, action: "addFlagOnSelf:")
         longPress.minimumPressDuration = 2.0
-        
         gameMapView.addGestureRecognizer(longPress)
+        } else {
+        println("Sorry, cannot drop another flag")
+        }
+        }
+        */
+        
+        if GameSingleton.gameData().gameIsActive == true {
+            
+            var longPress = UILongPressGestureRecognizer(target: self, action: "addFlagOnSelf:")
+            longPress.minimumPressDuration = 2.0
+            gameMapView.addGestureRecognizer(longPress)
+            
+            //            while GameSingleton.gameData()
+        }
         
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-    
+        
         var userLocation = locations[0] as CLLocation
         
-        var latitude = userLocation.coordinate.latitude
-        var longitude = userLocation.coordinate.longitude
+        UserSingleton.userData().userLatitude = userLocation.coordinate.latitude
+        UserSingleton.userData().userLongitude = userLocation.coordinate.longitude
+        
+        //        var latitude = userLocation.coordinate.latitude
+        //        var longitude = userLocation.coordinate.longitude
+        
         var latDelta: CLLocationDegrees = 0.01
         var lonDelta: CLLocationDegrees = 0.01
+        
         var span: MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
-        var location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        var location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(UserSingleton.userData().userLatitude, UserSingleton.userData().userLongitude)
         var region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
         gameMapView.setRegion(region, animated: true)
         
-       
-
         
-println("locations = \(locations)")
+        println("locations = \(locations)")
         
+        
+        
+    }
+    
+    //    func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+    //
+    //    }
+    
+    func addFlagOnSelf(gestureRecognizer: UIGestureRecognizer) {
+        // Drop flag on local user's location
+        
+        if UserSingleton.userData().flagDropped == false {
+            
+            var localUserCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(UserSingleton.userData().userLatitude, UserSingleton.userData().userLongitude)
+            
+            var localUserAnnotation = MKPointAnnotation()
+            localUserAnnotation.coordinate = localUserCoordinate
+            localUserAnnotation.title = "Player 1's Flag"
+            localUserAnnotation.subtitle = "username@blah.com"
+            
+            gameMapView.addAnnotation(localUserAnnotation)
+            
+        } else {
+            println("Sorry, you cannot drop another flag")
+        }
+        
+        UserSingleton.userData().flagDropped = true
     }
     
     func action(gestureRecognizer: UIGestureRecognizer) {

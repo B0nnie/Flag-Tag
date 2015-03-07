@@ -6,7 +6,10 @@
 //  Copyright (c) 2015 Ebony Nyenya. All rights reserved.
 //
 
+// UserSingleton.userData().flagDropped
+
 import UIKit
+import MapKit
 
 let _userData: UserSingleton = UserSingleton()
 
@@ -14,20 +17,21 @@ class UserSingleton: NSObject {
     
     var flagDropped: Bool = false
     
-    var userPoint = 0
+    var userFlag = 0
+    var userFlagLimit = 1
     
-    var userLatitude  = ""
+    var userPoints = 0
     
-    var userLongitude = ""
+    var userLatitude: CLLocationDegrees = 0
+    var userLongitude: CLLocationDegrees = 0
     
     
-
-
-
-class func userData() -> UserSingleton {
     
-    return _userData
-}
-
-
+    
+    class func userData() -> UserSingleton {
+        
+        return _userData
+    }
+    
+    
 }

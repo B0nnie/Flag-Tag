@@ -10,11 +10,13 @@ import UIKit
 
 
 
-class Flag: MKPointAnnotation {
+class Flag {
     
-    var latitude = 
+    var latitude = 0
     
-    var longitude =
+    var longitude = 0
+    
+    var pointsRewarded = 10
     
     
     
